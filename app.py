@@ -111,8 +111,8 @@ authenticator = stauth.Authenticate(
 if st.session_state.get('authentication_status') != True:
     col_l1, col_l2, col_l3 = st.columns([1, 2, 1])
     with col_l2:
-        if os.path.exists("data/logo_comuna.png"):
-            st.image("data/logo_comuna.png", width=150)
+        if os.path.exists("logo_comuna.png"):
+            st.image("logo_comuna.png", width=150)
         st.markdown("<h2 style='text-align: center;'>🏛 Sala de Autogobierno</h2>", unsafe_allow_html=True)
         st.markdown("<h4 style='text-align: center; color: #64748B;'>Comuna Socialista El Paraíso</h4>", unsafe_allow_html=True)
         st.write("")
