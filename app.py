@@ -1,9 +1,11 @@
 import streamlit as st
 import pandas as pd
+import sys
 import os
 import streamlit_authenticator as stauth
 from PIL import Image
 from pypdf import PdfReader
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from servicios.exportador import generar_excel, generar_pdf
 from servicios.whatsapp_service import generar_enlace_whatsapp
 
