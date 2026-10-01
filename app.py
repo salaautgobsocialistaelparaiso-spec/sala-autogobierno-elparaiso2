@@ -12,8 +12,8 @@ current_dir = Path(__file__).resolve().parent if "__file__" in locals() else Pat
 if str(current_dir) not in sys.path:
     sys.path.append(str(current_dir))
 
-from servicios.exportador import generar_excel, generar_pdf
-from servicios.whatsapp_service import generar_enlace_whatsapp
+from exportador import generar_excel, generar_pdf
+from whatsapp_service import generar_enlace_whatsapp
 
 # ===================================================================
 # 1. CONFIGURACIÓN DE LA PÁGINA Y ESTILOS (CSS)
