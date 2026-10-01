@@ -1,4 +1,5 @@
 streamlit-authenticator
+pypdf
 streamlit
 pandas
 openpyxl
