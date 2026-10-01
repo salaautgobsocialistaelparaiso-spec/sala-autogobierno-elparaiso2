@@ -1,11 +1,17 @@
 import streamlit as st
 import pandas as pd
+import sys
 import os
+from pathlib import Path
 import streamlit_authenticator as stauth
 from PIL import Image
 from pypdf import PdfReader
-import io
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+# Solución robusta para el manejo de rutas compatible con Streamlit Cloud
+current_dir = Path(__file__).resolve().parent if "__file__" in locals() else Path.cwd()
+if str(current_dir) not in sys.path:
+    sys.path.append(str(current_dir))
+
 from servicios.exportador import generar_excel, generar_pdf
 from servicios.whatsapp_service import generar_enlace_whatsapp
 
@@ -21,61 +27,61 @@ credentials = {
     "usernames": {
         "admin_principal": {
             "email": "admin@comunaelparaiso.com",
-            "name": "Administrador General",
+            "name": "Sala de Autogobierno- Comuna Socialista El Paraiso",
             "password": "comuna123.",
             "role": "admin",
             "ubch_asignada": "TODAS"
         },
-        "jefe_ubch_1": {
+        "jefeubchcreacionparaiso": {
             "email": "ubchcreacionparaiso@comunaelparaiso.com",
             "name": "Yesenia Mariño",
             "password": "17734881",
             "role": "jefe_ubch",
             "ubch_asignada": "UBCH Creacion Paraiso"
         },
-        "jefe_ubch_2": {
+        "jefeubchrafaelmarcano1": {
             "email": "ubchrafaelmarcano1@comunaelparaiso.com",
             "name": "Iris Enriquez",
             "password": "irisgas.1",
             "role": "jefe_ubch",
             "ubch_asignada": "UBCH Rafael Marcano I"
         },
-        "jefe_ubch_3": {
+        "jefeubchjtac": {
             "email": "ubchjosetadeoarreazacalatrava@comunaelparaiso.com",
             "name": "Carlos Salazar",
             "password": "carlos123.",
             "role": "jefe_ubch",
             "ubch_asignada": "UBCH Jose Tadeo arreaza Calatrava"
         },
-        "jefe_ubch_4": {
+        "jefeubchparaiso1": {
             "email": "ubchparaiso1@comunaelparaiso.com",
             "name": "Omaira Gonzalez",
             "password": "Omairaparaiso1.",
             "role": "jefe_ubch",
             "ubch_asignada": "UBCH Paraiso I"
         },
-        "jefe_ubch_5": {
+        "jefeubchalirioarreazaarreaza": {
             "email": "ubchalirioarreazaarreaza@comunaelparaiso.com",
             "name": "Arianny Mendez",
             "password": "Arianny123.",
             "role": "jefe_ubch",
             "ubch_asignada": "UBCH Alirio Arreaza Arreaza"
         },
-        "jefe_ubch_6": {
+        "jefeubchdoralbeach": {
             "email": "ubchdoralbeach@comunaelparaiso.com",
             "name": "Yamilet Torres",
             "password": "Doral1.",
             "role": "jefe_ubch",
             "ubch_asignada": "UBCH Doral Beach"
         },
-        "jefe_ubch_7": {
+        "jefeubchjoseluisarreaza": {
             "email": "ubchjoseluisarreaza@comunaelparaiso.com",
             "name": "Enrique Lopez",
             "password": "Kike123.",
             "role": "jefe_ubch",
             "ubch_asignada": "UBCH Jose Luis Arreaza"
         },
-        "jefe_ubch_8": {
+        "jefeubchjosefamatilde": {
             "email": "ubchjosefamatildesalazar@comunaelparaiso.com",
             "name": "Milagros Cruces",
             "password": "Milagros1.",
@@ -102,7 +108,6 @@ authenticator = stauth.Authenticate(
 # ===================================================================
 # PANTALLA DE ACCESO (LOGIN CON LOGO Y TÍTULO)
 # ===================================================================
-# Verificamos si el usuario NO está autenticado para mostrar el encabezado de bienvenida
 if st.session_state.get('authentication_status') != True:
     col_l1, col_l2, col_l3 = st.columns([1, 2, 1])
     with col_l2:
@@ -1316,5 +1321,7 @@ with col_exp2:
 with col_exp3:
     telefono = st.text_input("Número de destino:", value="584120000000")
     resumen_texto = f"Reporte de {opcion}:\nGenerado desde la Sala Situacional de la Comuna Socialista El Paraíso."
+    url_ws = generar_enlace_whatsapp(telefono, resumen_texto)
+    st.markdown(f'<a href="{url_ws}" target="_blank"><button style="background-color:#25D366;color:white;border:none;padding:8px 16px;border-radius:5px;cursor:pointer;">📲 Compartir en WhatsApp</button></a>', unsafe_allow_html=True)
     url_ws = generar_enlace_whatsapp(telefono, resumen_texto)
     st.markdown(f'<a href="{url_ws}" target="_blank"><button style="background-color:#25D366;color:white;border:none;padding:8px 16px;border-radius:5px;cursor:pointer;">📲 Compartir en WhatsApp</button></a>', unsafe_allow_html=True)
