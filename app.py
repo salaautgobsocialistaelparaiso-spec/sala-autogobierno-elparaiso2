@@ -413,6 +413,52 @@ def cargar_datos_logistica():
     for col in df_cbbi.columns:
         df_cbbi[col] = df_cbbi[col].astype(str)
 
+    return df_ubch, df_ccbi, df_cbbidef cargar_datos_ubch_extra():
+    if os.path.exists(RUTAS["UBCH_DATOS"]):
+        df_ubch = pd.read_excel(RUTAS["UBCH_DATOS"])
+    else:
+        df_ubch = pd.DataFrame({
+            "Nombre UBCH": ["UBCH Centro Educativo El Paraíso", "UBCH Grupo Escolar Simón Bolívar"],
+            "Consejos Comunales Asociados": ["CC Vencedores del Norte, CC Centro Comunal", "CC Sur Unido"],
+            "Zonas en Agregación": ["Sector Las Acacias, Calle Bolívar", "Sector La Línea"],
+            "Cantidad Votantes": [2450, 1890],
+            "Jefe o Jefa de Ubch" : ["Tibisay Rodriguez", "Representante 2"],
+            "Cedula de Identidad" : ["10288206", "00000000"],
+            "Telefono" : ["04122148330", "04120000000"],
+        })
+        df_ubch.to_excel(RUTAS["UBCH_DATOS"], index=False)
+
+    if os.path.exists(RUTAS["CCBI"]):
+        df_ccbi = pd.read_excel(RUTAS["CCBI"])
+    else:
+        df_ccbi = pd.DataFrame({
+            "Nombre UBCH": ["UBCH Centro Educativo El Paraíso", "UBCH Grupo Escolar Simón Bolívar"],
+            "Nombre y Apellido": ["Carmen Teresa", "Ruperto Medina"],
+            "Cédula": ["V-11111111", "V-22222222"],
+            "Teléfono": ["04121234567", "04149876543"],
+            "Comunidad": ["Comunidad El Paraíso Norte", "Comunidad El Paraíso Sur"]
+        })
+        df_ccbi.to_excel(RUTAS["CCBI"], index=False)
+
+    if os.path.exists(RUTAS["CBBI"]):
+        df_cbbi = pd.read_excel(RUTAS["CBBI"])
+    else:
+        df_cbbi = pd.DataFrame({
+            "Nombre UBCH": ["UBCH Centro Educativo El Paraíso", "UBCH Centro Educativo El Paraíso"],
+            "Nombre y Apellido": ["Ana Soto", "Luis Díaz"],
+            "Cédula": ["V-33333333", "V-44444444"],
+            "Teléfono": ["04165554433", "04241112233"],
+            "Nombre Calle": ["Calle Los Mangos", "Calle El Progreso"]
+        })
+        df_cbbi.to_excel(RUTAS["CBBI"], index=False)
+
+    for col in df_ubch.columns:
+        df_ubch[col] = df_ubch[col].astype(str)
+    for col in df_ccbi.columns:
+        df_ccbi[col] = df_ccbi[col].astype(str)
+    for col in df_cbbi.columns:
+        df_cbbi[col] = df_cbbi[col].astype(str)
+
     return df_ubch, df_ccbi, df_cbbi
 
 # Carga global de datos
