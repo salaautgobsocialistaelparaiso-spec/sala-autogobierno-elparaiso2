@@ -367,9 +367,7 @@ def cargar_datos_logistica():
         df.to_excel(RUTAS["LOGISTICA"], index=False)
     for col in df.columns:
         df[col] = df[col].astype(str)
-    return df
-
-def cargar_datos_ubch_extra():
+   def cargar_datos_ubch_extra():
     if os.path.exists(RUTAS["UBCH_DATOS"]):
         df_ubch = pd.read_excel(RUTAS["UBCH_DATOS"])
     else:
@@ -378,9 +376,9 @@ def cargar_datos_ubch_extra():
             "Consejos Comunales Asociados": ["CC Vencedores del Norte, CC Centro Comunal", "CC Sur Unido"],
             "Zonas en Agregación": ["Sector Las Acacias, Calle Bolívar", "Sector La Línea"],
             "Cantidad Votantes": [2450, 1890],
-            "Jefe o Jefa de Ubch" : ["Tibisay Rodriguez"],
-            "Cedula de Identidad" : ["10288206"],
-            "Telefono" : ["04122148330"],
+            "Jefe o Jefa de Ubch" : ["Tibisay Rodriguez", "Representante 2"],
+            "Cedula de Identidad" : ["10288206", "00000000"],
+            "Telefono" : ["04122148330", "04120000000"],
         })
         df_ubch.to_excel(RUTAS["UBCH_DATOS"], index=False)
 
