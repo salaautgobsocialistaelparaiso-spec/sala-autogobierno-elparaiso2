@@ -222,7 +222,10 @@ RUTAS = {
     "UBCH_JEFE": "data/UBCH_Jefe.xlsx",
     "UBCH_ESTRUCTURA": "data/UBCH_Estructura_Miembros.xlsx"   
 }
-
+for ruta in RUTAS.values():
+    dir_name = os.path.dirname(ruta)
+    if dir_name:
+        os.makedirs(dir_name, exist_ok=True)
 data_ubch_jefe = pd.DataFrame(columns=["Nombre UBCH", "Nombre y Apellido", "Cédula", "Teléfono"])
 data_ubch_estru = pd.DataFrame(columns=["Nombre UBCH", "Cargo", "Nombre y Apellido", "Cédula", "Teléfono"])
 data_ubch_detalles = pd.DataFrame()
