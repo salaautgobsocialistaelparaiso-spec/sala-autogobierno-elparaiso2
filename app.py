@@ -367,7 +367,7 @@ def cargar_datos_logistica():
         df.to_excel(RUTAS["LOGISTICA"], index=False)
     for col in df.columns:
         df[col] = df[col].astype(str)
-   def cargar_datos_ubch_extra():
+ def cargar_datos_ubch_extra():
     if os.path.exists(RUTAS["UBCH_DATOS"]):
         df_ubch = pd.read_excel(RUTAS["UBCH_DATOS"])
     else:
